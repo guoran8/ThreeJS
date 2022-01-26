@@ -1,0 +1,13 @@
+{
+  "name": "threejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "zhanghaoran <zhanghaoran@hl.com>",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.136.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.136.1"
+  }
+}
