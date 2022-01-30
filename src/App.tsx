@@ -1,10 +1,10 @@
 import React from 'react'
 
-import BasicScene from './scenes/basic-scene'
+import Animation from './scenes/animation'
 import './App.css'
 
 console.log('hello three1js')
 
-const App = () => <BasicScene />
+const App = () => <Animation />
 
 export default App
