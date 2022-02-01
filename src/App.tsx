@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Animation from './scenes/animation'
+import FullscreenAndResizing from './scenes/fullscreen-and-resizing'
 import './App.css'
 
 console.log('hello three1js')
 
-const App = () => <Animation />
+const App = () => <FullscreenAndResizing />
 
 export default App
