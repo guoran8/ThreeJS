@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Geometry from './scenes/geometry'
+import DebugUI from './scenes/debug-ui'
 import './App.css'
 
 console.log('hello three1js')
 
-const App = () => <Geometry />
+const App = () => <DebugUI />
 
 export default App
