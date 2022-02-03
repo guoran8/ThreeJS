@@ -2,13 +2,16 @@ import React, {useEffect, useRef} from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 
+
 const Animation = () => {
+    // TODO: JUST FOR TEST
     const mountRef = useRef<HTMLDivElement>(null)
     useEffect(() => {
         initThree()
     }, [])
 
     const initThree = () => {
+    
         /**
          * Scene
          */

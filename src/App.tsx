@@ -1,10 +1,9 @@
 import React from 'react'
 
-import DebugUI from './scenes/debug-ui'
+import Textures from './scenes/textures'
 import './App.css'
 
-console.log('hello three1js')
 
-const App = () => <DebugUI />
+const App = () => <Textures />
 
 export default App
