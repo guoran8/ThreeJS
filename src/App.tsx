@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Textures from './scenes/textures'
+import Material from './scenes/material'
 import './App.css'
 
 
-const App = () => <Textures />
+const App = () => <Material />
 
 export default App
