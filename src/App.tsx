@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Material from './scenes/material'
+import ThreeDText from './scenes/3d-text'
 import './App.css'
 
 
-const App = () => <Material />
+const App = () => <ThreeDText />
 
 export default App
