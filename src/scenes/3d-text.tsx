@@ -5,7 +5,6 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
 /**
- * https://www.bilibili.com/video/BV1xm4y1978J?p=13
  * We are goint to do what ilithya did with her cool portfolio
  * https://www.ilithya.rocks
  * and create a bit 3D text in the middle of the scene with
@@ -44,6 +43,12 @@ const ThreeDText = () => {
         // Axes helper
         const axesHelper = new THREE.AxesHelper()
         scene.add(axesHelper)
+
+        /**
+         * Textures
+         */
+        const textureLoader = new THREE.TextureLoader()
+        const matcapTexture = textureLoader.load('src/assets/textures/matcaps/1.png')
 
         /**
          * Fonts
@@ -87,27 +92,76 @@ const ThreeDText = () => {
                  * 
                  * Instead of moving the mesh, we are going to move the whole geometry with translate(...)
                  */
-                textGeometry.computeBoundingBox()
-                const boundingBox = textGeometry.boundingBox as THREE.Box3
-                textGeometry.translate(
-                    -boundingBox.max.x * 0.5,
-                    -boundingBox.max.y * 0.5,
-                    -boundingBox.max.z * 0.5
-                )
+                
+                /**
+                 * The text looks centered but it's not because of the 
+                 * bevelThickness and bevelSize
+                 */
+                //  textGeometry.computeBoundingBox()
 
-                const textMaterial = new THREE.MeshBasicMaterial({
-                    wireframe: true
+                //  const boundingBox = textGeometry.boundingBox as THREE.Box3
+                // textGeometry.translate(
+                //     -(boundingBox.max.x - 0.02) * 0.5,
+                //     -(boundingBox.max.y - 0.02) * 0.5,
+                //     -(boundingBox.max.z - 0.03) * 0.5
+                // )
+
+                /**
+                 * To centered using tanslate was long,
+                 * There is a much faster way.
+                 */
+                textGeometry.center()
+
+
+                /**
+                 * ADD A MATCAP MATERIAL
+                 * https://github.com/nidorx/matcaps
+                 */
+
+                const material = new THREE.MeshMatcapMaterial({
+                    matcap: matcapTexture
                 })
-                const text = new THREE.Mesh(textGeometry, textMaterial)
+
+                const text = new THREE.Mesh(textGeometry, material)
                 scene.add(text)
+
+                console.time('donuts')
+                /**
+                 * Create 100 donuts
+                 * Optimize
+                 * We can use the same material and the same geometry on multiple Meshes
+                 */
+                const donutGeometry = new THREE.TorusBufferGeometry(0.3, 0.2, 20, 45)
+
+                for(let i = 0; i < 100; i++) {                   
+                    // const donutGeometry = new THREE.TorusBufferGeometry(0.3, 0.2, 20, 45)
+                    // const donutMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture })
+                    const donut = new THREE.Mesh(donutGeometry, material)
+
+                    // Add randomness in their position
+                    donut.position.x = (Math.random() - 0.5) * 10
+                    donut.position.y = (Math.random() - 0.5) * 10
+                    donut.position.z = (Math.random() - 0.5) * 10
+
+                    // Add randomness in their rotation
+                    donut.rotation.x = Math.random() * Math.PI
+                    donut.rotation.y = Math.random() * Math.PI
+
+                    // Add randomness in their scale
+                    const scale = Math.random()
+                    donut.scale.set(scale, scale, scale)
+
+                    scene.add(donut)
+                }
+                console.timeEnd('donuts')
             }
         )
 
         // Objects
         // Camera
         const sizes = {
-            width: 1200,
-            height: 600
+            width: window.innerWidth,
+            height: window.innerHeight
         }
 
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
