@@ -48,7 +48,7 @@ const ThreeDText = () => {
          * Textures
          */
         const textureLoader = new THREE.TextureLoader()
-        const matcapTexture = textureLoader.load('src/assets/textures/matcaps/1.png')
+        const matcapTexture = textureLoader.load('src/assets/textures/matcaps/8.png')
 
         /**
          * Fonts
