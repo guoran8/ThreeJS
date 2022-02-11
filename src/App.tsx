@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Lights from './scenes/lights'
+import Shadow from './scenes/shadow'
 import './App.css'
 
 
-const App = () => <Lights />
+const App = () => <Shadow />
 
 export default App
